@@ -48,7 +48,7 @@ func PP(cmd string, args ...interface{}) *PipePart {
 	return &PipePart{cmd, args}
 }
 
-// ConfigMeta contains DB configs
+// Config contains DB configs
 type Config struct {
 	// RedisAddr Address redis is listening on
 	RedisAddr string `json:"redis_addr"`
