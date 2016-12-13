@@ -16,4 +16,4 @@ some awesome go utils
 * `import "github.com/Akagi201/utilgo/urls"`
 * `import "github.com/Akagi201/utilgo/jsons"`
 * `import "github.com/Akagi201/utilgo/tests"`
-* `import "github.com/Akagi201/utilgo/slice"`
+* `import "github.com/Akagi201/utilgo/slices"`
