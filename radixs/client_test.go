@@ -3,9 +3,9 @@ package radixs_test
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
 	"github.com/Akagi201/utilgo/radixs"
 	"github.com/Akagi201/utilgo/tests"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestClient(t *testing.T) {

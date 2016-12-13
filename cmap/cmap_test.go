@@ -3,8 +3,8 @@ package cmap_test
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
 	"github.com/Akagi201/utilgo/cmap"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestEmptyCmap(t *testing.T) {

@@ -12,8 +12,8 @@ type normalDB struct {
 }
 
 func newNormalDB() (DBer, error) {
-	log.Printf("connecting to redis at %s", Conf.RedisAddr)
-	p, err := pool.New("tcp", Conf.RedisAddr, 200)
+	log.Printf("connecting to redis at %s", dbConf.RedisAddr)
+	p, err := pool.New("tcp", dbConf.RedisAddr, 200)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -75,5 +75,5 @@ func (d normalDB) Scan(pattern string) <-chan string {
 }
 
 func (d normalDB) GetAddr() (string, error) {
-	return Conf.RedisAddr, nil
+	return dbConf.RedisAddr, nil
 }

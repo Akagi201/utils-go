@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
 	"github.com/Akagi201/utilgo/slices"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestStringsFound(t *testing.T) {

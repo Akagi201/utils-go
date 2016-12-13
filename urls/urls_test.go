@@ -3,8 +3,8 @@ package urls_test
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
 	"github.com/Akagi201/utilgo/urls"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestParseRawStreamURL(t *testing.T) {

@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
 	"github.com/Akagi201/utilgo/radixs"
+	"github.com/stretchr/testify/assert"
 )
 
 var (

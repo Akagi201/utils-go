@@ -12,8 +12,8 @@ type clusterDB struct {
 }
 
 func newClusterDB() (DBer, error) {
-	log.Printf("connecting to redis cluster at %s", Conf.RedisAddr)
-	c, err := cluster.New(Conf.RedisAddr)
+	log.Printf("connecting to redis cluster at %s", dbConf.RedisAddr)
+	c, err := cluster.New(dbConf.RedisAddr)
 	if err != nil {
 		log.Fatalln(err)
 	}

@@ -12,10 +12,10 @@ type sentinelDB struct {
 }
 
 func newSentinelDB() (DBer, error) {
-	clients := make([]*sentinel.Client, len(Conf.RedisSentinels))
-	for i, server := range Conf.RedisSentinels {
+	clients := make([]*sentinel.Client, len(dbConf.RedisSentinels))
+	for i, server := range dbConf.RedisSentinels {
 		log.Printf("connecting to redis sentinel at %s", server)
-		c, err := sentinel.NewClient("tcp", server, 10, Conf.RedisSentinelGroup)
+		c, err := sentinel.NewClient("tcp", server, 10, dbConf.RedisSentinelGroup)
 		if err != nil {
 			log.Fatalln(err)
 		}
@@ -29,7 +29,7 @@ func (d *sentinelDB) getSentinelAndMaster() (*sentinel.Client, *redis.Client, er
 	var err error
 	for _, sentinel := range d.Clients {
 		var c *redis.Client
-		c, err = sentinel.GetMaster(Conf.RedisSentinelGroup)
+		c, err = sentinel.GetMaster(dbConf.RedisSentinelGroup)
 		if err == nil {
 			return sentinel, c, nil
 		}
@@ -43,7 +43,7 @@ func (d *sentinelDB) Cmd(cmd string, args ...interface{}) *redis.Resp {
 	if err != nil {
 		return redis.NewResp(err)
 	}
-	defer sentinel.PutMaster(Conf.RedisSentinelGroup, conn)
+	defer sentinel.PutMaster(dbConf.RedisSentinelGroup, conn)
 
 	return conn.Cmd(cmd, args...)
 }
@@ -53,7 +53,7 @@ func (d sentinelDB) Pipe(p ...*PipePart) ([]*redis.Resp, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer sentinel.PutMaster(Conf.RedisSentinelGroup, c)
+	defer sentinel.PutMaster(dbConf.RedisSentinelGroup, c)
 
 	for i := range p {
 		c.PipeAppend(p[i].cmd, p[i].args...)
@@ -80,7 +80,7 @@ func (d sentinelDB) Scan(pattern string) <-chan string {
 			log.Printf("sentinelScan(%s) getSentinelAndMaster(): %s", pattern, err)
 			return
 		}
-		defer sentinel.PutMaster(Conf.RedisSentinelGroup, redisClient)
+		defer sentinel.PutMaster(dbConf.RedisSentinelGroup, redisClient)
 
 		if err = scanHelper(redisClient, pattern, retCh); err != nil {
 			log.Printf("sentinelScan(%s) scanHelper: %s", pattern, err)
@@ -96,7 +96,7 @@ func (d sentinelDB) GetAddr() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	defer sentinel.PutMaster(Conf.RedisSentinelGroup, c)
+	defer sentinel.PutMaster(dbConf.RedisSentinelGroup, c)
 
 	return c.Addr, nil
 }

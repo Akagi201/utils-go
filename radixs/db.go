@@ -1,12 +1,8 @@
 package radixs
 
-import (
-	"log"
+import "github.com/mediocregopher/radix.v2/redis"
 
-	"github.com/mediocregopher/radix.v2/redis"
-)
-
-// DBer is implemented and used by the rest of okq to interact with whatever
+// DBer is implemented and used by the application to interact with whatever
 // backend has been chosen
 type DBer interface {
 
@@ -53,7 +49,7 @@ func PP(cmd string, args ...interface{}) *PipePart {
 }
 
 // ConfigMeta contains DB configs
-type ConfigMeta struct {
+type Config struct {
 	// RedisAddr Address redis is listening on
 	RedisAddr string `json:"redis_addr"`
 	// RedisSentinels A sentinel address to connect to through to the client - overrides other options
@@ -67,19 +63,14 @@ type ConfigMeta struct {
 }
 
 var (
-	// Conf global DB configs
-	Conf *ConfigMeta
-	// Inst is an instance of DBer which is automatically initialized and which is
-	// what should be used by the rest of okq
-	Inst DBer
+	// dbConf global DB configs
+	dbConf *Config
 )
 
 // InitDB init DB with configs, if config is nil, then default configs will be used.
-func InitDB(config *ConfigMeta) {
-	var err error
-
+func InitDB(config *Config) (DBer, error) {
 	if config == nil {
-		Conf = &ConfigMeta{
+		dbConf = &Config{
 			RedisAddr:          "127.0.0.1:6379",
 			RedisCluster:       false,
 			RedisSentinel:      false,
@@ -87,18 +78,15 @@ func InitDB(config *ConfigMeta) {
 			RedisSentinelGroup: "master",
 		}
 	} else {
-		Conf = config
+		dbConf = config
 	}
 
-	if Conf.RedisSentinel {
-		Inst, err = newSentinelDB()
-	} else if Conf.RedisCluster {
-		Inst, err = newClusterDB()
+	if dbConf.RedisSentinel {
+		return newSentinelDB()
+	} else if dbConf.RedisCluster {
+		return newClusterDB()
 	} else {
-		Inst, err = newNormalDB()
-	}
-	if err != nil {
-		log.Fatalln(err)
+		return newNormalDB()
 	}
 }
 
