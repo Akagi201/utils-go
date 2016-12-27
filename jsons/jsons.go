@@ -9,8 +9,16 @@ import (
 // JSONPrettyPrint pretty print raw json string to indent string
 func JSONPrettyPrint(in, prefix, indent string) string {
 	var out bytes.Buffer
-	err := json.Indent(&out, []byte(in), prefix, indent)
-	if err != nil {
+	if err := json.Indent(&out, []byte(in), prefix, indent); err != nil {
+		return in
+	}
+	return out.String()
+}
+
+// CompactJSON compact json input with insignificant space characters elided
+func CompactJSON(in string) string {
+	var out bytes.Buffer
+	if err := json.Compact(&out, []byte(in)); err != nil {
 		return in
 	}
 	return out.String()

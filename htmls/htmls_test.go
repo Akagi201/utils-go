@@ -4,9 +4,9 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/Akagi201/utilgo/htmls"
 	"golang.org/x/net/html"
 	"golang.org/x/net/html/atom"
-	"github.com/Akagi201/utilgo/htmls"
 )
 
 const testHTML = `
