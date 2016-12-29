@@ -25,7 +25,8 @@ var procs int
 flag.IntVar(&procs, "procs", runtime.NumCPU(), "GOMAXPROCS")
 
 // set flags from configuration before parse command-line flags.
-if args, err := conflag.ArgsFrom("/path/to/config.toml"); err != nil {
+args, err := conflag.ArgsFrom("/path/to/config.toml");
+if err != nil {
     panic(err)
 }
 flag.CommandLine.Parse(args)
@@ -95,7 +96,8 @@ parser := flags.NewParser(&opts, flags.Default)
 
 conflag.LongHyphen = true
 conflag.BoolValue = false
-if args, err := conflag.ArgsFrom("/path/to/config.toml"); err != nil {
+args, err := conflag.ArgsFrom("/path/to/config.toml");
+if err != nil {
         panic(err)
 }
 parser.ParseArgs(args)
