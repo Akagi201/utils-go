@@ -49,12 +49,14 @@ func TestFormatNoProps(t *testing.T) {
 	assert.Equal(t, "cause", fmt.Sprintf("%v", err))
 
 	formatted := fmt.Sprintf("%+v", err)
-	prefix := `cause
-github.com/Akagi201/utilgo/errors_test.TestFormatNoProps
-	` // The rest of the string will have device-specific components (paths, CPU).
+	prefix := `cause`
+	path := `github.com/Akagi201/utilgo/errors_test.TestFormatNoProps`
+	// The rest of the string will have device-specific components (paths, CPU).
 
-	assert.True(t, strings.HasPrefix(formatted, prefix),
-		"expected\n%s\nto have prefix\n%s", formatted, prefix)
+	assert.True(t, strings.HasPrefix(formatted, prefix), "expected\n%s\nto have prefix\n%s",
+		formatted, prefix)
+	assert.True(t, strings.Contains(formatted, path),
+		"expected\n%s\nto contain\n%s", formatted, path)
 	assert.Contains(t, formatted, "github.com/Akagi201/utilgo/errors/errors_test.go:")
 }
 
@@ -66,12 +68,14 @@ func TestFormatWithProps(t *testing.T) {
 	assert.Equal(t, "[key=value,{1}=2] cause", fmt.Sprintf("%v", err))
 
 	formatted := fmt.Sprintf("%+v", err)
-	prefix := `[key=value,{Id:1}=2] cause
-github.com/Akagi201/utilgo/errors_test.TestFormatWithProps
-	` // The rest of the string will have device-specific components (paths, CPU).
+	prefix := `[key=value,{Id:1}=2] cause`
+	path := `github.com/Akagi201/utilgo/errors_test.TestFormatWithProps`
+	// The rest of the string will have device-specific components (paths, CPU).
 
-	assert.True(t, strings.HasPrefix(formatted, prefix),
-		"expected\n%s\nto have prefix\n%s", formatted, prefix)
+	assert.True(t, strings.HasPrefix(formatted, prefix), "expected\n%s\nto contain\n%s",
+		formatted, prefix)
+	assert.True(t, strings.Contains(formatted, path),
+		"expected\n%s\nto contain\n%s", formatted, path)
 	assert.Contains(t, formatted, "github.com/Akagi201/utilgo/errors/errors_test.go:")
 }
 
