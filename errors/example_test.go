@@ -9,7 +9,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-func ExampleSimple() {
+func Example_simple() {
 	var err error = errors.New("fail")
 	var errWithProp error = uerrors.From(err).
 		WithValue("key", "value").
@@ -23,7 +23,7 @@ func ExampleSimple() {
 	// foo: bar
 }
 
-func ExampleCause() {
+func Example_cause() {
 	var rootCause error = uerrors.From(errors.New("root cause")).
 		WithValue("rootKey", "rootValue")
 
@@ -38,7 +38,7 @@ func ExampleCause() {
 	// wrappedKey: wrappedValue
 }
 
-func ExampleOverriding() {
+func Example_overriding() {
 	var rootCause error = uerrors.From(errors.New("root cause")).
 		WithValue("key", "rootValue")
 
@@ -53,7 +53,7 @@ func ExampleOverriding() {
 	// key: wrappedValue
 }
 
-func ExampleFormat() {
+func Example_format() {
 	type state struct {
 		Url      string
 		Duration time.Duration

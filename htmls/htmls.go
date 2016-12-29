@@ -115,8 +115,8 @@ func ByTag(a atom.Atom) MatchFunc {
 	return func(node *html.Node) bool { return node.DataAtom == a }
 }
 
-// ById returns a MatchFunc which matches all nodes with the provided id.
-func ById(id string) MatchFunc {
+// ByID returns a MatchFunc which matches all nodes with the provided id.
+func ByID(id string) MatchFunc {
 	return func(node *html.Node) bool { return Attr(node, "id") == id }
 }
 

@@ -63,7 +63,7 @@ func TestFindAllDoesNotReturnNestedMatchingNodes(t *testing.T) {
 func TestFindNextSiblingReturnsMatchingNode(t *testing.T) {
 	node, _ := html.Parse(strings.NewReader(testSiblingHTML))
 
-	startingPoint, ok := htmls.Find(node, htmls.ById("a"))
+	startingPoint, ok := htmls.Find(node, htmls.ByID("a"))
 	if !ok {
 		t.Error("Expected to find 'a' P node")
 	} else {
@@ -82,7 +82,7 @@ func TestFindNextSiblingReturnsMatchingNode(t *testing.T) {
 func TestFindNextSiblingDoesntReturnChildren(t *testing.T) {
 	node, _ := html.Parse(strings.NewReader(testSiblingHTML))
 
-	startingPoint, ok := htmls.Find(node, htmls.ById("b"))
+	startingPoint, ok := htmls.Find(node, htmls.ByID("b"))
 	if !ok {
 		t.Error("Expected to find 'b' P node")
 	} else {
@@ -96,7 +96,7 @@ func TestFindNextSiblingDoesntReturnChildren(t *testing.T) {
 func TestFindPrevSiblingReturnsMatchingNode(t *testing.T) {
 	node, _ := html.Parse(strings.NewReader(testSiblingHTML))
 
-	startingPoint, ok := htmls.Find(node, htmls.ById("c"))
+	startingPoint, ok := htmls.Find(node, htmls.ByID("c"))
 	if !ok {
 		t.Error("Expected to find the 'c' P node")
 	} else {
@@ -115,7 +115,7 @@ func TestFindPrevSiblingReturnsMatchingNode(t *testing.T) {
 func TestFindPrevSiblingDoesntReturnChildren(t *testing.T) {
 	node, _ := html.Parse(strings.NewReader(testSiblingHTML))
 
-	startingPoint, ok := htmls.Find(node, htmls.ById("c"))
+	startingPoint, ok := htmls.Find(node, htmls.ByID("c"))
 	if !ok {
 		t.Error("Expected to find 'c' P node")
 	} else {

@@ -178,8 +178,8 @@ func (e *kvError) formatInner(f fmt.State, c rune) {
 
 	fmt.Fprintf(f, format+"="+format, e.key, e.value)
 
-	if e, ok := e.ContextError.(*kvError); ok {
+	if err, ok := e.ContextError.(*kvError); ok {
 		fmt.Fprint(f, ",")
-		e.formatInner(f, c)
+		err.formatInner(f, c)
 	}
 }
