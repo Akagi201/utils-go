@@ -20,3 +20,4 @@ some awesome go utils
 * `import "github.com/Akagi201/utilgo/htmls"`
 * `import "github.com/Akagi201/utilgo/errors"`
 * `import "github.com/Akagi201/utilgo/conflag"`
+* `import "github.com/Akagi201/utilgo/ips"`
