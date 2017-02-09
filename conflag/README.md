@@ -96,9 +96,10 @@ parser := flags.NewParser(&opts, flags.Default)
 
 conflag.LongHyphen = true
 conflag.BoolValue = false
-args, err := conflag.ArgsFrom("/path/to/config.toml");
+args, err := conflag.ArgsFrom("/path/to/config.toml")
 if err != nil {
         panic(err)
 }
 parser.ParseArgs(args)
+parser.Parse()
 ```
