@@ -1,38 +1,31 @@
 package main
 
 import (
-	"log"
-
 	"github.com/Akagi201/utilgo/conflag"
 	flags "github.com/jessevdk/go-flags"
+	log "github.com/sirupsen/logrus"
 )
 
-var optCli struct {
-	Conf string `long:"conf" default:"" json:"-" description:"config file"`
-}
-
-var optConf struct {
+var opts struct {
+	Conf     string `long:"conf" description:"config file"`
 	LogLevel string `long:"log_level" default:"info" description:"log level"`
 }
 
 func main() {
-	parserCli := flags.NewParser(&optCli, flags.Default|flags.IgnoreUnknown)
-	parserConf := flags.NewParser(&optConf, flags.Default|flags.IgnoreUnknown)
+	parser := flags.NewParser(&opts, flags.Default|flags.IgnoreUnknown)
 
-	parserCli.Parse()
+	parser.Parse()
 
-	if optCli.Conf != "" {
+	if opts.Conf != "" {
 		conflag.LongHyphen = true
 		conflag.BoolValue = false
-		args, err := conflag.ArgsFrom(optCli.Conf)
+		args, err := conflag.ArgsFrom(opts.Conf)
 		if err != nil {
 			panic(err)
 		}
 
-		parserConf.ParseArgs(args)
+		parser.ParseArgs(args)
 	}
 
-	parserConf.Parse()
-
-	log.Printf("opts: %+v", optConf)
+	log.Infof("opts: %+v", opts)
 }
