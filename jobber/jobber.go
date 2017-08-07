@@ -6,6 +6,8 @@ import (
 	"strconv"
 	"strings"
 
+	"time"
+
 	"github.com/pkg/errors"
 )
 
@@ -35,6 +37,78 @@ func (self FullTimeSpec) String() string {
 		self.Mday,
 		self.Mon,
 		self.Wday)
+}
+
+func (self FullTimeSpec) Next(now time.Time) time.Time {
+	/*
+	 * We test every second from now till 2 years from now,
+	 * looking for a time that satisfies the job's schedule
+	 * criteria.
+	 */
+
+	var year time.Duration = time.Hour * 24 * 365
+	var max time.Time = now.Add(2 * year)
+	for next := now; next.Before(max); next = next.Add(time.Second) {
+		a := self.Sec.Satisfied(next.Second()) &&
+			self.Min.Satisfied(next.Minute()) &&
+			self.Hour.Satisfied(next.Hour()) &&
+			self.Wday.Satisfied(weekdayToInt(next.Weekday())) &&
+			self.Mday.Satisfied(next.Day()) &&
+			self.Mon.Satisfied(monthToInt(next.Month()))
+		if a {
+			return next
+		}
+	}
+
+	return now
+}
+
+func weekdayToInt(d time.Weekday) int {
+	switch d {
+	case time.Sunday:
+		return 0
+	case time.Monday:
+		return 1
+	case time.Tuesday:
+		return 2
+	case time.Wednesday:
+		return 3
+	case time.Thursday:
+		return 4
+	case time.Friday:
+		return 5
+	default:
+		return 6
+	}
+}
+
+func monthToInt(m time.Month) int {
+	switch m {
+	case time.January:
+		return 1
+	case time.February:
+		return 2
+	case time.March:
+		return 3
+	case time.April:
+		return 4
+	case time.May:
+		return 5
+	case time.June:
+		return 6
+	case time.July:
+		return 7
+	case time.August:
+		return 8
+	case time.September:
+		return 9
+	case time.October:
+		return 10
+	case time.November:
+		return 11
+	default:
+		return 12
+	}
 }
 
 type WildcardTimeSpec struct {
