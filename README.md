@@ -23,3 +23,4 @@ some awesome go utils
 * `import "github.com/Akagi201/utilgo/ips"`
 * `import "github.com/Akagi201/utilgo/jobber"`
 * `import "github.com/Akagi201/utilgo/chain"`
+* `import "github.com/Akagi201/utilgo/vergen"`
