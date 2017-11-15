@@ -148,28 +148,96 @@ func ToBools(slice interface{}, fieldName string) (s []bool, err error) {
 
 // ToStringsUnsafe maps a field to a slice of string but not returns an error.
 // If an error still happens, s will be nil.
-func ToStringsUnsafe(slice interface{}, fieldName string) (s []string) {
-	s, _ = ToStrings(slice, fieldName)
-	return
+func ToStringsUnsafe(slice interface{}, fieldName string) []string {
+	s, _ := ToStrings(slice, fieldName)
+	return s
 }
 
 // ToIntsUnsafe maps a field to a slice of int but not returns an error.
 // If an error still happens, s will be nil.
-func ToIntsUnsafe(slice interface{}, fieldName string) (s []int) {
-	s, _ = ToInts(slice, fieldName)
-	return
+func ToIntsUnsafe(slice interface{}, fieldName string) []int {
+	s, _ := ToInts(slice, fieldName)
+	return s
 }
 
 // ToFloatsUnsafe maps a field to a slice of float but not returns an error.
 // If an error still happens, s will be nil.
-func ToFloatsUnsafe(slice interface{}, fieldName string) (s []float64) {
-	s, _ = ToFloats(slice, fieldName)
-	return
+func ToFloatsUnsafe(slice interface{}, fieldName string) []float64 {
+	s, _ := ToFloats(slice, fieldName)
+	return s
 }
 
 // ToBoolsUnsafe maps a field to a slice of bool but not returns an error.
 // If an error still happens, s will be nil.
-func ToBoolsUnsafe(slice interface{}, fieldName string) (s []bool) {
-	s, _ = ToBools(slice, fieldName)
-	return
+func ToBoolsUnsafe(slice interface{}, fieldName string) []bool {
+	s, _ := ToBools(slice, fieldName)
+	return s
+}
+
+// MaxInt max int of the slice
+func MaxInt(slice []int) int {
+	var max int
+	for _, v := range slice {
+		if v > max {
+			max = v
+		}
+	}
+	return max
+}
+
+// MaxFloat max float of the slice
+func MaxFloat(slice []float64) float64 {
+	var max float64
+	for _, v := range slice {
+		if v > max {
+			max = v
+		}
+	}
+	return max
+}
+
+// MinInt min int of the slice
+func MinInt(slice []int) int {
+	if len(slice) == 0 {
+		return 0
+	}
+	min := 9223372036854775807
+	for _, v := range slice {
+		if v < min {
+			min = v
+		}
+	}
+
+	return min
+}
+
+// MinFloat min float of the slice
+func MinFloat(slice []float64) float64 {
+	if len(slice) == 0 {
+		return 0
+	}
+	var min float64 = 9223372036854775807
+	for _, v := range slice {
+		if v < min {
+			min = v
+		}
+	}
+
+	return min
+}
+
+func SumInt(slice []int) int {
+	sum := 0
+	for _, v := range slice {
+		sum += v
+	}
+	return sum
+}
+
+func SumFloat(slice []float64) float64 {
+	sum := 0.0
+	for _, v := range slice {
+		sum += v
+	}
+	return sum
 }

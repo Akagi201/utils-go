@@ -1,8 +1,8 @@
 package main
 
 import (
-	"time"
 	"fmt"
+	"time"
 
 	"github.com/Akagi201/utilgo/broadcast"
 )
@@ -10,11 +10,10 @@ import (
 func main() {
 	b := broadcast.NewBroadcast()
 
-
 	go func() {
 		for {
 			b.Send(1)
-			time.Sleep(1*time.Second)
+			time.Sleep(1 * time.Second)
 		}
 	}()
 
