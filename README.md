@@ -26,3 +26,4 @@ some awesome go utils
 * `import "github.com/Akagi201/utilgo/vergen"`
 * `import "github.com/Akagi201/utilgo/enums"`
 * `import "github.com/Akagi201/utilgo/flags"`
+* `import "github.com/Akagi201/utilgo/hashs"`
