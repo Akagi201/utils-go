@@ -27,3 +27,4 @@ some awesome go utils
 * `import "github.com/Akagi201/utilgo/enums"`
 * `import "github.com/Akagi201/utilgo/flags"`
 * `import "github.com/Akagi201/utilgo/hashs"`
+* `import "github.com/Akagi201/utilgo/files"`
