@@ -10,7 +10,7 @@ import (
 	"encoding/hex"
 )
 
-func GetMd5Sign(secret string, params string) (string, error) {
+func GetMd5Sign(params string) (string, error) {
 	hash := md5.New()
 	_, err := hash.Write([]byte(params))
 
