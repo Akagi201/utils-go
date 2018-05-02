@@ -29,3 +29,4 @@ some awesome go utils
 * `import "github.com/Akagi201/utilgo/hashs"`
 * `import "github.com/Akagi201/utilgo/files"`
 * `import "github.com/Akagi201/utilgo/signs"`
+* `import "github.com/Akagi201/utilgo/binary"`
