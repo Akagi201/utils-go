@@ -7,19 +7,19 @@ import (
 
 // Cmap concurrent safe map
 type Cmap struct {
-	m map[interface{}]interface{}
+	m map[any]any
 	sync.RWMutex
 }
 
 // New new cmap
 func New() *Cmap {
 	return &Cmap{
-		m: make(map[interface{}]interface{}),
+		m: make(map[any]any),
 	}
 }
 
 // Get get from cmap return k's value
-func (cm *Cmap) Get(k interface{}) (interface{}, bool) {
+func (cm *Cmap) Get(k any) (any, bool) {
 	cm.RLock()
 	defer cm.RUnlock()
 	if val, ok := cm.m[k]; ok {
@@ -30,7 +30,7 @@ func (cm *Cmap) Get(k interface{}) (interface{}, bool) {
 
 // Set maps the given key and value.
 // Return false if the key is already in the map.
-func (cm *Cmap) Set(k interface{}, v interface{}) bool {
+func (cm *Cmap) Set(k any, v any) bool {
 	cm.Lock()
 	defer cm.Unlock()
 	_, ok := cm.m[k]
@@ -39,14 +39,14 @@ func (cm *Cmap) Set(k interface{}, v interface{}) bool {
 }
 
 // Delete delete k in cmap
-func (cm *Cmap) Delete(k interface{}) {
+func (cm *Cmap) Delete(k any) {
 	cm.Lock()
 	defer cm.Unlock()
 	delete(cm.m, k)
 }
 
 // Has returns true if k exists in the map
-func (cm *Cmap) Has(k interface{}) bool {
+func (cm *Cmap) Has(k any) bool {
 	cm.RLock()
 	defer cm.RUnlock()
 	if _, ok := cm.m[k]; !ok {
@@ -71,14 +71,14 @@ func (cm *Cmap) IsEmpty() bool {
 func (cm *Cmap) Clear() {
 	cm.Lock()
 	defer cm.Unlock()
-	cm.m = make(map[interface{}]interface{})
+	cm.m = make(map[any]any)
 }
 
 // Keys return all the keys in cmap
-func (cm *Cmap) Keys() []interface{} {
+func (cm *Cmap) Keys() []any {
 	cm.RLock()
 	defer cm.RUnlock()
-	s := make([]interface{}, cm.Len())
+	s := make([]any, cm.Len())
 	for k := range cm.m {
 		s = append(s, k)
 	}
@@ -86,11 +86,11 @@ func (cm *Cmap) Keys() []interface{} {
 }
 
 // Values return all the values in cmap
-func (cm *Cmap) Values() []interface{} {
+func (cm *Cmap) Values() []any {
 	cm.RLock()
 	defer cm.RUnlock()
 
-	s := make([]interface{}, cm.Len())
+	s := make([]any, cm.Len())
 	for _, v := range cm.m {
 		s = append(s, v)
 	}

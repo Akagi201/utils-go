@@ -24,7 +24,7 @@ type stackTracer interface {
 type contexter interface {
 	// Returns the value associated with the given key on the current error.
 	// Should *NOT* recurse into the error's cause, if it has one.
-	Get(key interface{}) (value interface{}, ok bool)
+	Get(key any) (value any, ok bool)
 }
 
 // ContextError An implementation of the standard error interface with key:value context.
@@ -46,7 +46,7 @@ type ContextError interface {
 
 	// Returns a copy of this ContextError with the specified key/value pair.
 	// Do not modify the current ContextError.
-	WithValue(key, value interface{}) ContextError
+	WithValue(key, value any) ContextError
 
 	// If the wrapped error implements fmt.Formatter, this method should delegate directly
 	// to it.
@@ -67,7 +67,7 @@ func From(err error) ContextError {
 // Get returns the value associated with key using the following rules to resolve key:
 //   - If the key exists on the current error, return the value set by the last call to WithValue.
 //   - Else, if the current error has a cause, recursively look for the key on the cause.
-func Get(err error, key interface{}) (interface{}, bool) {
+func Get(err error, key any) (any, bool) {
 	if err == nil {
 		return nil, false
 	}
@@ -87,7 +87,7 @@ func Get(err error, key interface{}) (interface{}, bool) {
 
 // GetOpt is the same as Get but just returns nil if the key isn't set, to make it
 // more convenient to use in single-value contexts.
-func GetOpt(err error, key interface{}) interface{} {
+func GetOpt(err error, key any) any {
 	if val, ok := Get(err, key); ok {
 		return val
 	}
@@ -114,14 +114,14 @@ func (e baseError) StackTrace() errors.StackTrace {
 	return nil
 }
 
-func (e baseError) Get(key interface{}) (interface{}, bool) {
+func (e baseError) Get(key any) (any, bool) {
 	if e, ok := e.error.(contexter); ok {
 		return e.Get(key)
 	}
 	return nil, false
 }
 
-func (e baseError) WithValue(key, value interface{}) ContextError {
+func (e baseError) WithValue(key, value any) ContextError {
 	return &kvError{e, key, value}
 }
 
@@ -140,17 +140,17 @@ func (e baseError) formatBaseError(f fmt.State, c rune) {
 // kvError a wrapper around an ContextError that associates a key with a value.
 type kvError struct {
 	ContextError
-	key, value interface{}
+	key, value any
 }
 
-func (e *kvError) Get(key interface{}) (interface{}, bool) {
+func (e *kvError) Get(key any) (any, bool) {
 	if key == e.key {
 		return e.value, true
 	}
 	return e.ContextError.Get(key)
 }
 
-func (e *kvError) WithValue(key, value interface{}) ContextError {
+func (e *kvError) WithValue(key, value any) ContextError {
 	// Override here so the wrapped error is this object, not the embedded ContextError.
 	return &kvError{e, key, value}
 }

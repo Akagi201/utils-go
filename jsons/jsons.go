@@ -25,7 +25,7 @@ func CompactJSON(in string) string {
 }
 
 // PrettyPrintMap pretty print a map to indent json string
-func PrettyPrintMap(m map[string]interface{}) string {
+func PrettyPrintMap(m map[string]any) string {
 	b, err := json.MarshalIndent(m, "", "  ")
 	if err != nil {
 		return ""

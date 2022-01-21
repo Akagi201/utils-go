@@ -27,7 +27,7 @@ var (
 
 // IndexOf returns the first index at which a given element can be found in the slice, or -1 if it is not present.
 // The second argument must be a slice or array.
-func IndexOf(val interface{}, slice interface{}) int {
+func IndexOf(val any, slice any) int {
 	v := reflect.ValueOf(val)
 	arr := reflect.ValueOf(slice)
 
@@ -47,7 +47,7 @@ func IndexOf(val interface{}, slice interface{}) int {
 }
 
 // ToStrings maps a field to a slice of string.
-func ToStrings(slice interface{}, fieldName string) (s []string, err error) {
+func ToStrings(slice any, fieldName string) (s []string, err error) {
 	switch reflect.TypeOf(slice).Kind() {
 	case reflect.Slice:
 		val := reflect.ValueOf(slice)
@@ -72,7 +72,7 @@ func ToStrings(slice interface{}, fieldName string) (s []string, err error) {
 }
 
 // ToInts maps a field to a slice of int.
-func ToInts(slice interface{}, fieldName string) (s []int, err error) {
+func ToInts(slice any, fieldName string) (s []int, err error) {
 	switch reflect.TypeOf(slice).Kind() {
 	case reflect.Slice:
 		val := reflect.ValueOf(slice)
@@ -97,7 +97,7 @@ func ToInts(slice interface{}, fieldName string) (s []int, err error) {
 }
 
 // ToFloats maps a field to a slice of int.
-func ToFloats(slice interface{}, fieldName string) (s []float64, err error) {
+func ToFloats(slice any, fieldName string) (s []float64, err error) {
 	switch reflect.TypeOf(slice).Kind() {
 	case reflect.Slice:
 		val := reflect.ValueOf(slice)
@@ -122,7 +122,7 @@ func ToFloats(slice interface{}, fieldName string) (s []float64, err error) {
 }
 
 // ToBools maps a field to a slice of bool.
-func ToBools(slice interface{}, fieldName string) (s []bool, err error) {
+func ToBools(slice any, fieldName string) (s []bool, err error) {
 	switch reflect.TypeOf(slice).Kind() {
 	case reflect.Slice:
 		val := reflect.ValueOf(slice)
@@ -148,28 +148,28 @@ func ToBools(slice interface{}, fieldName string) (s []bool, err error) {
 
 // ToStringsUnsafe maps a field to a slice of string but not returns an error.
 // If an error still happens, s will be nil.
-func ToStringsUnsafe(slice interface{}, fieldName string) []string {
+func ToStringsUnsafe(slice any, fieldName string) []string {
 	s, _ := ToStrings(slice, fieldName)
 	return s
 }
 
 // ToIntsUnsafe maps a field to a slice of int but not returns an error.
 // If an error still happens, s will be nil.
-func ToIntsUnsafe(slice interface{}, fieldName string) []int {
+func ToIntsUnsafe(slice any, fieldName string) []int {
 	s, _ := ToInts(slice, fieldName)
 	return s
 }
 
 // ToFloatsUnsafe maps a field to a slice of float but not returns an error.
 // If an error still happens, s will be nil.
-func ToFloatsUnsafe(slice interface{}, fieldName string) []float64 {
+func ToFloatsUnsafe(slice any, fieldName string) []float64 {
 	s, _ := ToFloats(slice, fieldName)
 	return s
 }
 
 // ToBoolsUnsafe maps a field to a slice of bool but not returns an error.
 // If an error still happens, s will be nil.
-func ToBoolsUnsafe(slice interface{}, fieldName string) []bool {
+func ToBoolsUnsafe(slice any, fieldName string) []bool {
 	s, _ := ToBools(slice, fieldName)
 	return s
 }

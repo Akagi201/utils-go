@@ -21,7 +21,7 @@ var (
 	DefaultEndian = LittleEndian
 )
 
-func Marshal(v interface{}) ([]byte, error) {
+func Marshal(v any) ([]byte, error) {
 	b := &bytes.Buffer{}
 	if err := NewEncoder(b).Encode(v); err != nil {
 		return nil, err
@@ -29,7 +29,7 @@ func Marshal(v interface{}) ([]byte, error) {
 	return b.Bytes(), nil
 }
 
-func Unmarshal(b []byte, v interface{}) error {
+func Unmarshal(b []byte, v any) error {
 	return NewDecoder(bytes.NewReader(b)).Decode(v)
 }
 
@@ -64,7 +64,7 @@ func (e *Encoder) writeVarint(v int) error {
 	return err
 }
 
-func (b *Encoder) Encode(v interface{}) (err error) {
+func (b *Encoder) Encode(v any) (err error) {
 	switch cv := v.(type) {
 	case encoding.BinaryMarshaler:
 		buf, err := cv.MarshalBinary()
@@ -191,7 +191,7 @@ func NewDecoder(r io.Reader) *Decoder {
 	}
 }
 
-func (d *Decoder) Decode(v interface{}) (err error) {
+func (d *Decoder) Decode(v any) (err error) {
 	// Check if the type implements the encoding.BinaryUnmarshaler interface, and use it if so.
 	if i, ok := v.(encoding.BinaryUnmarshaler); ok {
 		var l uint64

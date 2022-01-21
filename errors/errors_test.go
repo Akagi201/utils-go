@@ -127,7 +127,7 @@ func TestGetRootCauseHasProp(t *testing.T) {
 	assertHasProp(t, err, "foo", "bar")
 }
 
-func assertHasPropOnSelf(t *testing.T, err uerrors.ContextError, key, wantVal interface{}) {
+func assertHasPropOnSelf(t *testing.T, err uerrors.ContextError, key, wantVal any) {
 	val, ok := err.Get(key)
 	assert.True(t, ok)
 	assert.Equal(t, wantVal, val)
@@ -135,21 +135,21 @@ func assertHasPropOnSelf(t *testing.T, err uerrors.ContextError, key, wantVal in
 }
 
 // Like assertHasPropOnSelf but calls the package Get to recurse through causes.
-func assertHasProp(t *testing.T, err error, key, wantVal interface{}) {
+func assertHasProp(t *testing.T, err error, key, wantVal any) {
 	assert.Equal(t, wantVal, uerrors.GetOpt(err, key))
 	val, ok := uerrors.Get(err, key)
 	assert.True(t, ok)
 	assert.Equal(t, wantVal, val)
 }
 
-func assertDoesNotHavePropOnSelf(t *testing.T, err uerrors.ContextError, key interface{}) {
+func assertDoesNotHavePropOnSelf(t *testing.T, err uerrors.ContextError, key any) {
 	val, ok := err.Get(key)
 	assert.False(t, ok)
 	assert.Nil(t, val)
 }
 
 // Like assertDoesNotHavePropOnSelf but calls the package Get to recurse through causes.
-func assertDoesNotHaveProp(t *testing.T, err error, key interface{}) {
+func assertDoesNotHaveProp(t *testing.T, err error, key any) {
 	assert.Nil(t, uerrors.GetOpt(err, key))
 	val, ok := uerrors.Get(err, key)
 	assert.False(t, ok)

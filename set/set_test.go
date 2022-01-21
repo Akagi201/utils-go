@@ -23,7 +23,7 @@ func TestEach(t *testing.T) {
 	s := set.New()
 	s.Add(1)
 	s.Add(2)
-	fn := func(e interface{}) {
+	fn := func(e any) {
 		assert.True(t, s.Has(e))
 	}
 	s.Each(fn)
