@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/Akagi201/utilgo/files"
+	"github.com/Akagi201/utils-go/files"
 )
 
 // Test_ReadPropertiesFile creates a test properties file and reads it into memory

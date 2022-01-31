@@ -3,7 +3,7 @@ package jobber_test
 import (
 	"testing"
 
-	"github.com/Akagi201/utilgo/jobber"
+	"github.com/Akagi201/utils-go/jobber"
 	"github.com/stretchr/testify/require"
 )
 

@@ -3,7 +3,7 @@ package hashs_test
 import (
 	"testing"
 
-	"github.com/Akagi201/utilgo/hashs"
+	"github.com/Akagi201/utils-go/hashs"
 	"github.com/stretchr/testify/assert"
 )
 

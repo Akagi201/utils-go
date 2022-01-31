@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Akagi201/utilgo/broadcast"
+	"github.com/Akagi201/utils-go/broadcast"
 )
 
 func main() {

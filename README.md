@@ -1,15 +1,5 @@
-# utilgo
+# utils-go
 
-some awesome go utils
+Some awesome go utils.
 
-## Install
-
-```bash
-go get github.com/Akagi201/utilgo
-```
-
-## Test
-
-```bash
-go test ./...
-```
+  > I am changing the code all the time, do not use it directly, fork it!

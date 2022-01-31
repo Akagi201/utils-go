@@ -3,7 +3,7 @@ package enums_test
 import (
 	"fmt"
 
-	"github.com/Akagi201/utilgo/enums"
+	"github.com/Akagi201/utils-go/enums"
 )
 
 var (

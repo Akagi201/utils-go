@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/Akagi201/utilgo/slices"
+	"github.com/Akagi201/utils-go/slices"
 	"github.com/stretchr/testify/assert"
 )
 

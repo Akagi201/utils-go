@@ -3,7 +3,7 @@ package urls_test
 import (
 	"testing"
 
-	"github.com/Akagi201/utilgo/urls"
+	"github.com/Akagi201/utils-go/urls"
 	"github.com/stretchr/testify/assert"
 )
 

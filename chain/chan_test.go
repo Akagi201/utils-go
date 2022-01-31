@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Akagi201/utilgo/chain"
+	"github.com/Akagi201/utils-go/chain"
 )
 
 // A constructor for middleware

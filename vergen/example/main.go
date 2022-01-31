@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/Akagi201/utilgo/vergen/example/version"
+	"github.com/Akagi201/utils-go/vergen/example/version"
 )
 
 // go:generate go run vergen/main.go

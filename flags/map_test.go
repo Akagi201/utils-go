@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/Akagi201/utilgo/flags"
+	"github.com/Akagi201/utils-go/flags"
 )
 
 func TestMap(t *testing.T) {

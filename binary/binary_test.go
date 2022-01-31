@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Akagi201/utilgo/binary"
+	"github.com/Akagi201/utils-go/binary"
 	"github.com/stretchr/testify/assert"
 )
 

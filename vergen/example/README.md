@@ -1,7 +1,7 @@
 # vergen examples
 
 ## simple usage
-* `go get github.com/Akagi201/utilgo/vergen/cmd/vergen`
+* `go get github.com/Akagi201/utils-go/vergen/cmd/vergen`
 * `vergen` -> generate version package in current directory.
 
 ## build steps

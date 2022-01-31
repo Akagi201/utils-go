@@ -3,7 +3,7 @@ package flags_test
 import (
 	"testing"
 
-	"github.com/Akagi201/utilgo/flags"
+	"github.com/Akagi201/utils-go/flags"
 )
 
 func TestArray(t *testing.T) {

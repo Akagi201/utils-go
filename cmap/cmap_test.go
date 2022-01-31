@@ -3,7 +3,7 @@ package cmap_test
 import (
 	"testing"
 
-	"github.com/Akagi201/utilgo/cmap"
+	"github.com/Akagi201/utils-go/cmap"
 	"github.com/stretchr/testify/assert"
 )
 

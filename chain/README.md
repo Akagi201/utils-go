@@ -52,7 +52,7 @@ import (
     "time"
 
     "github.com/throttled/throttled"
-    "github.com/Akagi201/utilgo/chain"
+    "github.com/Akagi201/utils-go/chain"
     "github.com/justinas/nosurf"
 )
 

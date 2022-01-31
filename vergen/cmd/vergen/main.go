@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/Akagi201/utilgo/vergen"
+	"github.com/Akagi201/utils-go/vergen"
 )
 
 func main() {

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/Akagi201/utilgo/flags"
+	"github.com/Akagi201/utils-go/flags"
 )
 
 var (

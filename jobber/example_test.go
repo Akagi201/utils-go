@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Akagi201/utilgo/jobber"
+	"github.com/Akagi201/utils-go/jobber"
 )
 
 func Example_simple() {

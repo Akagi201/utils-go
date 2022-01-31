@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/Akagi201/utilgo/htmls"
+	"github.com/Akagi201/utils-go/htmls"
 	"golang.org/x/net/html"
 	"golang.org/x/net/html/atom"
 )
