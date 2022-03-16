@@ -1,0 +1,24 @@
+go 1.18
+
+use (
+  .
+	./binary
+	./broadcast
+	./chain
+	./cmap
+	./enums
+	./files
+	./flags
+	./gorms
+	./hashs
+	./htmls
+	./ips
+	./jobber
+	./jsons
+	./set
+	./signs
+	./slices
+	./tests
+	./urls
+	./vergen
+)
