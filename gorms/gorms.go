@@ -10,7 +10,7 @@ import (
 // Generic helper wrappers for our differents models
 type GormDB interface {
 	Migrate(ctx context.Context, models any) (bool, error)
-	Create(ctx context.Context, models any) (string, error)
+	Create(ctx context.Context, models any) (any, error)
 	GetRows(ctx context.Context, models any) (any, error)
 	Get(ctx context.Context, models any, fields map[string]any) (any, error)
 	GetAll(ctx context.Context, models any) (any, error)
@@ -39,7 +39,7 @@ func (g *gormDB) Migrate(ctx context.Context, models any) (bool, error) {
 }
 
 // Create data from any given models
-func (g *gormDB) Create(ctx context.Context, models any) (string, error) {
+func (g *gormDB) Create(ctx context.Context, models any) (any, error) {
 	if err := g.db.Model(models).Error; err != nil {
 		return "", err
 	}
@@ -48,7 +48,7 @@ func (g *gormDB) Create(ctx context.Context, models any) (string, error) {
 	if tx.Error != nil {
 		return "", tx.Error
 	}
-	return "Data has been created", nil
+	return models, nil
 }
 
 func (g *gormDB) GetRows(ctx context.Context, models any) (any, error) {
